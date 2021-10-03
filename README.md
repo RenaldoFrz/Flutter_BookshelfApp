@@ -4,5 +4,5 @@ A state management Flutter project for group project in independent study GITS.i
 
 This project created by:
 
-1. Yusuf
+1. Achmad Yusuf Bagus Setiawan
 2. Renaldo Fareza Tambunan
