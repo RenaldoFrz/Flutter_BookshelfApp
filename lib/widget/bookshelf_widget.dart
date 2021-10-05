@@ -32,17 +32,17 @@ class BookshelfWidget extends StatelessWidget {
             ),
             IconButton(
                 onPressed: () {
+                  final provider =
+                      Provider.of<BookshelfProvider>(context, listen: false);
                   showDialog(
                     context: context,
-                    builder: (BuildContext context) => Consumer <BookshelfProvider>(
-                      builder: (context, bookshelfProv, _) => CustomAlertDialog(
-                        title: 'Delete Item',
-                        desc: 'Are you sure to delete this item ?',
-                        onYesPressed: () {
-                          bookshelfProv.deteleItem(bookshelf.title?? "");
-                          Navigator.of(context).pop();
-                        },
-                      ),
+                    builder: (BuildContext context) => CustomAlertDialog(
+                      title: 'Delete Item',
+                      desc: 'Are you sure to delete this item ?',
+                      onYesPressed: () {
+                        provider.deteleItem(bookshelf);
+                        Navigator.of(context).pop();
+                      },
                     ),
                   );
                 },

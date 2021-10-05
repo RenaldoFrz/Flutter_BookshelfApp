@@ -16,9 +16,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    // final provider = Provider.of<BookshelfProvider>(context);
-    // final listBookshelf = provider.list;
-
     return Scaffold(
       backgroundColor: const Color(0xffF0F0F0),
       appBar: AppBar(
