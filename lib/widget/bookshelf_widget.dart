@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bookshelf_app/model/bookshelf.dart';
+import 'package:flutter_bookshelf_app/provider/bookshelf_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'custom_alertdialog.dart';
 
@@ -32,10 +34,15 @@ class BookshelfWidget extends StatelessWidget {
                 onPressed: () {
                   showDialog(
                     context: context,
-                    builder: (BuildContext context) => CustomAlertDialog(
-                      title: 'Delete Item',
-                      desc: 'Are you sure to delete this item ?',
-                      onYesPressed: () {},
+                    builder: (BuildContext context) => Consumer <BookshelfProvider>(
+                      builder: (context, bookshelfProv, _) => CustomAlertDialog(
+                        title: 'Delete Item',
+                        desc: 'Are you sure to delete this item ?',
+                        onYesPressed: () {
+                          bookshelfProv.deteleItem(bookshelf.title?? "");
+                          Navigator.of(context).pop();
+                        },
+                      ),
                     ),
                   );
                 },

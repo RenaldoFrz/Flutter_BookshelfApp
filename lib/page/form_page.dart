@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bookshelf_app/model/bookshelf.dart';
+import 'package:flutter_bookshelf_app/provider/bookshelf_provider.dart';
 import 'package:flutter_bookshelf_app/widget/custom_alertdialog.dart';
+import 'package:provider/provider.dart';
 
 class FormPage extends StatefulWidget {
   Bookshelf bookshelf;
@@ -85,19 +87,31 @@ class _FormPageState extends State<FormPage> {
                     //Jika tambah baru
                     ? showDialog(
                         context: context,
-                        builder: (BuildContext context) => CustomAlertDialog(
-                          title: 'Add Item',
-                          desc: 'Are you sure to add this item ?',
-                          onYesPressed: () {},
+                        builder: (BuildContext context) => Consumer<BookshelfProvider>(
+                          builder: (context, bookshelfProv, _) => CustomAlertDialog(
+                            title: 'Add Item',
+                            desc: 'Are you sure to add this item ?',
+                            onYesPressed: () {
+                              bookshelfProv.addNewItem(_title!.text, _yearOfBook!.text, _synopsis!.text,);
+                              Navigator.of(context).pop();
+                              Navigator.pop(context);
+                            },
+                          ),
                         ),
                       )
                     //Jika edit yang sudah ada
                     : showDialog(
                         context: context,
-                        builder: (BuildContext context) => CustomAlertDialog(
-                          title: 'Save Item',
-                          desc: 'Are you sure to save this item ?',
-                          onYesPressed: () {},
+                        builder: (BuildContext context) => Consumer<BookshelfProvider>(
+                          builder: (context, bookshelfProv, _) => CustomAlertDialog(
+                            title: 'Save Item',
+                            desc: 'Are you sure to save this item ?',
+                            onYesPressed: () {
+                              bookshelfProv.editItem(widget.bookshelf, _title!.text, _yearOfBook!.text, _synopsis!.text,);
+                              Navigator.of(context).pop();
+                              Navigator.pop(context);
+                            },
+                          ),
                         ),
                       );
               }
