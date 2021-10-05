@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bookshelf_app/model/bookshelf.dart';
-import 'package:flutter_bookshelf_app/provider/bookshelf_provider.dart';
 import 'package:flutter_bookshelf_app/widget/custom_alertdialog.dart';
-import 'package:provider/provider.dart';
 
 class FormPage extends StatefulWidget {
   Bookshelf bookshelf;
@@ -20,7 +18,7 @@ class _FormPageState extends State<FormPage> {
   final TextEditingController? _title = TextEditingController();
   final TextEditingController? _yearOfBook = TextEditingController();
   final TextEditingController? _synopsis = TextEditingController();
-  late bool newItem;
+  late bool newItem; //Note: Untuk menandai apakah dia data baru atau sudah ada
 
   @override
   void initState() {

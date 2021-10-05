@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bookshelf_app/model/bookshelf.dart';
-import 'package:flutter_bookshelf_app/provider/bookshelf_provider.dart';
-import 'package:provider/provider.dart';
 
 import 'custom_alertdialog.dart';
 
