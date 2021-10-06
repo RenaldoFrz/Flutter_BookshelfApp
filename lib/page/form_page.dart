@@ -83,35 +83,42 @@ class _FormPageState extends State<FormPage> {
           child: ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
+                final provider =
+                    Provider.of<BookshelfProvider>(context, listen: false);
                 newItem
                     //Jika tambah baru
                     ? showDialog(
                         context: context,
-                        builder: (BuildContext context) => Consumer<BookshelfProvider>(
-                          builder: (context, bookshelfProv, _) => CustomAlertDialog(
-                            title: 'Add Item',
-                            desc: 'Are you sure to add this item ?',
-                            onYesPressed: () {
-                              bookshelfProv.addNewItem(_title!.text, _yearOfBook!.text, _synopsis!.text,);
-                              Navigator.of(context).pop();
-                              Navigator.pop(context);
-                            },
-                          ),
+                        builder: (BuildContext context) => CustomAlertDialog(
+                          title: 'Add Item',
+                          desc: 'Are you sure to add this item ?',
+                          onYesPressed: () {
+                            provider.addNewItem(
+                              _title!.text,
+                              _yearOfBook!.text,
+                              _synopsis!.text,
+                            );
+                            Navigator.of(context).pop();
+                            Navigator.pop(context);
+                          },
                         ),
                       )
                     //Jika edit yang sudah ada
                     : showDialog(
                         context: context,
-                        builder: (BuildContext context) => Consumer<BookshelfProvider>(
-                          builder: (context, bookshelfProv, _) => CustomAlertDialog(
-                            title: 'Save Item',
-                            desc: 'Are you sure to save this item ?',
-                            onYesPressed: () {
-                              bookshelfProv.editItem(widget.bookshelf, _title!.text, _yearOfBook!.text, _synopsis!.text,);
-                              Navigator.of(context).pop();
-                              Navigator.pop(context);
-                            },
-                          ),
+                        builder: (BuildContext context) => CustomAlertDialog(
+                          title: 'Save Item',
+                          desc: 'Are you sure to save this item ?',
+                          onYesPressed: () {
+                            provider.editItem(
+                              widget.bookshelf,
+                              _title!.text,
+                              _yearOfBook!.text,
+                              _synopsis!.text,
+                            );
+                            Navigator.of(context).pop();
+                            Navigator.pop(context);
+                          },
                         ),
                       );
               }

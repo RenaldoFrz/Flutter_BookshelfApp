@@ -6,21 +6,25 @@ class BookshelfProvider extends ChangeNotifier {
 
   List<Bookshelf> get list => _list.toList();
 
-  void addNewItem(String title, String year, String synopsis){
+  void addNewItem(String title, String year, String synopsis) {
     _list.add(Bookshelf(title: title, yearOfBook: year, synopsis: synopsis));
     notifyListeners();
   }
 
-  void deteleItem(String title) {
-    _list.removeWhere((book) => book.title == title);
+  void deteleItem(Bookshelf book) {
+    _list.remove(book);
     notifyListeners();
   }
 
-  void editItem(Bookshelf bookshelf, String title, String year, String synopsis){
-    int index = _list.indexOf(bookshelf);
-    _list[index].title = title;
-    _list[index].yearOfBook = year;
-    _list[index].synopsis = synopsis;
+  void editItem(
+    Bookshelf bookshelf,
+    String title,
+    String year,
+    String synopsis,
+  ) {
+    bookshelf.title = title;
+    bookshelf.yearOfBook = year;
+    bookshelf.synopsis = synopsis;
     notifyListeners();
   }
 }
